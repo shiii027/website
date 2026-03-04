@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Gift</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://i.pinimg.com/originals/5d/26/48/5d26483555376bf5de7ee74b87792a6f.png');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 350px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  .box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  .box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .text {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  button {
+    padding: 10px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  .btn-next {
+    background-color: #8a2be2;
+    color: #fff;
+  }
+  .btn-open {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  .btn-no {
+    background-color: #f44336;
+    color: #fff;
+  }
+  .btn-heart {
+    background-color: #B39EB5;
+    color: #fff;
+  }
+  /* Heart effect styles */
+  #floating-area {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+  .float-object {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.8;
+    font-size: 24px;
+    user-select: none;
+    pointer-events: none;
+    animation: rise 5s linear forwards;
+  }
+  @keyframes rise {
+    to {
+      transform: translateY(-600px);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="container" id="section1">
+  <div class="box">
+    <h2>Hiii bebiii (˶ˆᗜˆ˵)</h2>
+    <img src="https://i.imgflip.com/1xhb7r.jpg" />
+    <p> Bulagaaa I see you (•؎ •)</p>
+</div>
+  <button class="btn-next" id="nextBtn">Next</button>
+</div>
+
+<div class="container" id="section2" style="display:none;">
+  <div class="box">
+    <img src="C:/Users/HP/Downloads/cat.jpg"/>
+    <div class="text">Do you want to open it?</div>
+  </div>
+  <button class="btn-open" id="openBtn">Opo</button>
+  <button class="btn-no" id="noBtn">Ayaw ko nga</button>
+</div>
+
+<div class="container" id="section3" style="display:none;">
+  <div class="box">
+    <img src="https://images3.memedroid.com/images/UPLOADED680/652ea9ff787c9.jpeg" />
+    <div class="text">Ihh hindi pwede (˚ ˃̣̣̥⌓˂̣̣̥ ) </div>
+  </div>
+  <button class="btn-next" id="tryAgainBtn">Ulit!!</button>
+</div>
+
+<div class="container" id="section4" style="display:none;">
+  <div class="box" style="position: relative;">
+    <h2> Happy birthdaaayy (∩˃o˂∩)♡ </h2>
+    <!-- Wrap the image and floating area together -->
+    <div style="position: relative; display: inline-block; width: 100%;">
+      <img src="C:/Users/HP/Downloads/wieee.jpg" style="display:block; width:100%; max-width:300px;" />
+    </div>
+    <p> Happy happpy birtthdaayy!! I hope you enjoy this small gift of mineee. </p>
+    <!-- Floating area overlay -->
+    <div id="floating-area" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10;"></div>
+    <button class="btn-heart" id="greetBtn">🎉</button>
+  </div>
+</div>
+<script>
+  const nextBtn = document.getElementById('nextBtn');
+  const openBtn = document.getElementById('openBtn');
+  const noBtn = document.getElementById('noBtn');
+  const tryAgainBtn = document.getElementById('tryAgainBtn');
+
+  const section1 = document.getElementById('section1');
+  const section2 = document.getElementById('section2');
+  const section3 = document.getElementById('section3');
+  const section4 = document.getElementById('section4');
+
+  nextBtn.onclick = () => {
+    section1.style.display = 'none';
+    section2.style.display = 'block';
+  };
+
+  document.getElementById('openBtn').onclick = () => {
+    section2.style.display = 'none';
+    section4.style.display = 'block';
+    document.getElementById('letterImage').src = ''; // Leave blank or add your image URL
+  };
+
+  document.getElementById('noBtn').onclick = () => {
+    section2.style.display = 'none';
+    section3.style.display = 'block';
+  };
+
+  document.getElementById('tryAgainBtn').onclick = () => {
+    section3.style.display = 'none';
+    section2.style.display = 'block';
+  };
+
+  // Heart effect script
+  const container = document.getElementById('floating-area');
+
+  function createFloatingObject() {
+    const obj = document.createElement('div');
+    obj.className = 'float-object';
+
+    // Always create a heart
+    obj.innerHTML = '❤️';
+
+    // Assign a random color to hearts
+    const heartColors = ['#FF0000', '#FF69B4', '#FF1493', '#DC143C'];
+    const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+    obj.style.setProperty('color', color, 'important');
+
+    // Random horizontal position
+    obj.style.left = Math.random() * 90 + '%';
+
+    // Random size
+    obj.style.fontSize = (20 + Math.random() * 20) + 'px';
+
+    // Random delay for animation start
+    obj.style.animationDelay = Math.random() * 2 + 's';
+
+    container.appendChild(obj);
+
+    // Remove after animation
+    setTimeout(() => {
+      if (container.contains(obj)) {
+        container.removeChild(obj);
+      }
+    }, 5000);
+  }
+
+  document.getElementById('greetBtn').addEventListener('click', () => {
+    for (let i = 0; i < 20; i++) {
+      createFloatingObject();
+    }
+  });
+</script>
+</body>
+</html>
